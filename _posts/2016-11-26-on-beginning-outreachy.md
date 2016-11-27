@@ -13,7 +13,7 @@ incredibly grateful for this opportunity.
 
 I'll be working with [node.js], to help land and test a cross-platform serial
 communication implementation to improve native compatibility between [libuv],
-[node-serial], and [node.js].
+[node-serialport], and [node.js].
 
 My mentor, [Myles Borins], has been a real angel to me since the very beginning
 of the application process. He's been a gracious, considerate, & kind
@@ -49,6 +49,7 @@ something of value, or something of my own creation.
 
 Hope to see you on the other side!
 
+[libuv]: https://github.com/libuv/libuv
 [node.js]: https://nodejs.org/en/
 [Myles Borins]: https://twitter.com/thealphanerd
 [AlterConf]: https://www.alterconf.com/
