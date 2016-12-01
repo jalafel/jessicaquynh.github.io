@@ -4,13 +4,13 @@ title:  "What I am Learning: UNIX Processes"
 date:   2016-11-25 23:46:00 -0400
 categories: learning
 images:
-  - image_path: /assets/unix_processes_1.jpg
+  - image_path: /assets/images/unix_processes_1.jpg
     title: Unix Processes 1
     caption: 1. Overview of Kernel & Processes, how they communicate
-  - image_path: /assets/unix_processes_2.jpg
+  - image_path: /assets/images/unix_processes_2.jpg
     title: Unix Processes 2
     caption: 2. Program vs. Process
-  - image_path: /assets/unix_processes_3.jpg
+  - image_path: /assets/images/unix_processes_3.jpg
     title: Unix Processes 3
     caption: 3. Properties of a Process
 ---

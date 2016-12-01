@@ -77,7 +77,8 @@ This is used to improve throughput, latency, and/or responsiveness.
 
 ### What is Node.js, then?
 
-Node.js is a runtime environment[^7] for JavaScript. It operates on a single-thread and uses non-blocking I/O calls. If you recall, this will
+Node.js is a runtime environment[^7] for JavaScript. It operates on a
+single-thread and uses non-blocking I/O calls. If you recall, this will
 support concurrency between function calls, and the single thread enforces
 callbacks.
 
@@ -109,52 +110,14 @@ Uses of Node include:
 Since each execution of parallel tasks are handled by the threadpool, let's look
 a little closer to what that means.
 
-A threadpool is a queued set of threads that is dispatched by the main thread. Each thread differs inherent to its type; networking is non-blocking and file
+A threadpool is a queued set of threads that is dispatched by the main thread.
+Each thread differs inherent to its type; networking is non-blocking and file
 I/O runs in a blocking way.
 
-When a thread in the thread pool completes a task, it informs the main thread of this, which in turn, the main thread reacts by executing the registered
-callback. Callbacks are handled serially on the main thread, which may pose problems if long-lasting computations will freeze the entire event-loop.
-
-### Footnotes
-[^1]: A scheduler is a method by which work is assigned to resources to complete
-that work.
-[^2]: An address space defines a range of discrete addresses; of each may
-relate to a network host, peripheal device, disk sector, a memory cell or other
-logical/physical idenitty.
-[^3]: IPC are mechanisms that allow processes to share data; typically
-categorized as clients and servers.
-[^4]: The difference between concurrent and parallel execution is explained as
-concurrency being the sequence of task A and task B happening independently.
-Such that task A begins, and then B starts before task A is finished. Otherwise
-stated that A and B tasks/calculations happen within the same time frame, with a
-general tendency towards depdendency between the two.
-
-On the other hand, parallelism describes two or more tasks/calculations that
-happen simultaneously. Parallelism is one way to implement concurrency. This is
-seen through task switching; the CPU will switch between tasks A and B with
-fractions of time slices in between and the two tasks will appear to be running
-in parallel.
-[^5]: This is a term used in concurrent programming. Also known as
-linearizability. An operation (or set of) is atomic if it appears to the rest of
-the system to occur instantaneously. It guarantees isolation from concurrent
-processes. They commonly have a succeed-or-fail definition. They either
-successfully change the state of the system or have no apparent effect.
-[^6]: Got its name from its usual implementation:
-{% highlight ruby %}
-while(queue.waitForMessage()) {
-  queue.processNextMessage();
-}
-{% endhighlight %}
-`queue.processNextMessage` waits synchronously for a message to arrive (where a
-a _message_ is an association with the function to be called in a JavaScript
-runtime).
-
-Each message is processed completely before any other message is processed. It
-cannot be pre-empted and will run entirely before any other code runs. Unlike in
-C, which if a function runs in a thread, it can be stopped at any point to
-run some other code in another thread.
-[^7]: A system to implement an execution model (the order in which work
-was specified in terms of the language that it gets performed.)
+When a thread in the thread pool completes a task, it informs the main thread of
+this, which in turn, the main thread reacts by executing the registered
+callback. Callbacks are handled serially on the main thread, which may pose
+problems if long-lasting computations will freeze the entire event-loop.
 
 Glossary:
 _Throughput_ - the total amount of work completed per time unit
@@ -184,9 +147,65 @@ https://en.wikipedia.org/wiki/Asynchronous_I/O
 https://en.wikipedia.org/wiki/Runtime_system
 https://en.wikipedia.org/wiki/Node.js
 https://en.wikipedia.org/wiki/Observer_pattern
-
 https://developer.mozilla.org/en/docs/Web/JavaScript/EventLoop
 http://softwareengineering.stackexchange.com/questions/190719/
 https://www.quora.com/How-does-a-single-thread-handle-asynchronous-code-in-JavaScriptthe-difference-between-concurrent-and-parallel-execution
 http://preshing.com/20130618/atomic-vs-non-atomic-operations/
 http://blog.regehr.org/archives/490
+
+
+### Footnotes
+[^1]:
+    A scheduler is a method by which work is assigned to resources to complete
+    that work.
+
+[^2]:
+    An address space defines a range of discrete addresses; of each may relate
+    to a network host, peripheal device, disk sector, a memory cell or other
+    logical/physical idenitty.
+
+[^3]:
+    IPC are mechanisms that allow processes to share data; typically categorized
+    as clients and servers.
+
+[^4]:
+    The difference between concurrent and parallel execution is explained as
+    concurrency being the sequence of task A and task B happening independently.
+    Such that task A begins, and then B starts before task A is finished.
+    Otherwise stated that A and B tasks/calculations happen within the same time
+    frame, with a general tendency towards depdendency between the two.
+
+    On the other hand, parallelism describes two or more tasks/calculations that
+    happen simultaneously. Parallelism is one way to implement concurrency. This
+    is seen through task switching; the CPU will switch between tasks A and B
+    with fractions of time slices in between and the two tasks will appear to be
+    running in parallel.
+
+[^5]:
+    This is a term used in concurrent programming. Also known as
+    linearizability. An operation (or set of) is atomic if it appears to the
+    rest of the system to occur instantaneously. It guarantees isolation from
+    concurrent processes. They commonly have a succeed-or-fail definition. They
+    either successfully change the state of the system or have no apparent
+    effect.
+
+[^6]:
+    Got its name from its usual implementation:
+
+        while(queue.waitForMessage()) {
+          queue.processNextMessage();
+        }
+
+    `queue.processNextMessage` waits synchronously for a message to arrive (where
+    a _message_ is an association with the function to be called in a JavaScript
+    runtime).
+
+    Each message is processed completely before any other message is processed. It
+    cannot be pre-empted and will run entirely before any other code runs. Unlike in
+    C, which if a function runs in a thread, it can be stopped at any point to
+    run some other code in another thread.
+
+[^7]:
+    A system to implement an execution model (the order in which work was
+    specified in terms of the language that it gets performed.)
+
