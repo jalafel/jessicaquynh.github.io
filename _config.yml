@@ -17,8 +17,7 @@ name: Sitename
 author: Jessica Quynh Tran
 title: j.q.t.
 email: jessica.quynh.tran@gmail.com
-disqus_shortname: jessicaquynh-github-io
-description: > # this means to ignore newlines until "baseurl:"
+description:
   This is a blog dedicated to my adventures in computer programming.
   Welcome to the left-side of my brain.
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -27,6 +26,7 @@ github_username:  jessicaquynh
 instagram_username: jalafel
 twitter_username: jalafel
 google_analytics: UA-88235289-1
+disqus_shortname: jessicaquynh-github-io
 # Build settings
 markdown: kramdown
 theme: minima
