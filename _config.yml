@@ -26,7 +26,8 @@ github_username:  jessicaquynh
 instagram_username: jalafel
 twitter_username: jalafel
 google_analytics: UA-88235289-1
-disqus_shortname: jessicaquynh-github-io
+disqus:
+  shortname: jessicaquynh-github-io
 # Build settings
 markdown: kramdown
 theme: minima
