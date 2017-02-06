@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Jessica Quynh | What I am Learning: Neural Networks</title>
+  <meta name="description" content="Notes on neural networks.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="What I am Learning: Neural Networks">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://jessicaquynh.github.io/posts/neural-networks">
+  <meta property="og:description" content="Notes on neural networks.">
+  <meta property="og:site_name" content="Jessica Quynh">
+  <meta property="og:image" content="http://jessicaquynh.github.io/assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="http://jessicaquynh.github.io/posts/neural-networks">
+  <meta name="twitter:title" content="What I am Learning: Neural Networks">
+  <meta name="twitter:description" content="Notes on neural networks.">
+  <meta name="twitter:image" content="http://jessicaquynh.github.io/assets/og-image.jpg">
+
+
+  <link href="http://jessicaquynh.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Jessica Quynh Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/dark.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Jessica Quynh">Jessica Quynh</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/jalafel" target="_blank" title="Twitter">
+          <span class="icon icon-social-twitter"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/jessicaquynh" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>What I am Learning: Neural Networks</h1>
+            <p>Notes on neural networks.</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                November 28, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  5 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/learning">learning</a>
+                
+                  <a href="/tag/neural network">neural network</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <h3 id="what-is-a-neural-network">What is a neural network?</h3>
+
+<p>A neural network can be described as an algorithm or proccss that is intended to
+progressively learn a concept by analyzing and remembering a set of training
+examples. This set can be as small as 10 to a million. Obviously, the more
+examples fed into the system, the more a program will learn this given concept.</p>
+
+<p>A concept can be a replication of a human faculty. One common investigation
+(and successful implementation, is handwriting. You see it nowadays with bank
+ATMs, postal offices reading addresses, etcetera).</p>
+
+<!-- "But along the way we'll develop many key ideas about neural networks, including two important types of artificial neuron (the perceptron and the sigmoid neuron), and the standard learning algorithm for neural networks, known as stochastic gradient descent."
+ -->
+
+<h3 id="recurrent-neural-networks">Recurrent Neural Networks</h3>
+
+<p>Traditional neural networks do not have knowledge persistence. Which is to say,
+they cannot build off previously learned knowledge to have a leg up in gaining
+more. In short, they lack context. Each time new data is given, the process
+will start from the beginning and reach a new conclusion. Unlike human processes
+that take previously gained information to reason a novel one.</p>
+
+<p>Recurrent neural networks address this issue. They are networks that contain
+loops that pass data from one process to a duplicate process.</p>
+
+<h4 id="lstm">LSTM</h4>
+
+<p>This is a special sort of recurrent neural network. It stands for Long Short
+Term Memory networks.</p>
+
+<p>RNNs have a problem with information gaps. When we are talking about
+predictability based off of previously gained knowledge, there might be a large
+gap between one piece of information or another. So as the gap grows RNNs are
+unable to connect that information.</p>
+
+<p>However, LTSM are capable of learning long-term dependencies. They are designed
+to avoid this problem.</p>
+
+<p>Traditionally RNN have only one layer of mapping between each structure. A
+LTSM has four.</p>
+
+<p>The idea is that there is a cell state that runs through each structural
+iteration. In each structure, there are gates that optionally let information
+through. There are three gates that determines how much of the component to let
+through. Within the gate, there will be logic to determine which information
+to keep, throw away, or update. It basically handles all the information that
+is being relayed in the cell-state.</p>
+
+<p>Ref: <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTMs</a></p>
+
+<h3 id="perceptrons">Perceptrons</h3>
+
+<p>Are an artificial neuron created in the 50s which take several binary inputs
+to produce a single binary output. A binary input may be denoted by any
+variable <script type="math/tex">x_1, ..</script>. There are weights that are real numbers to express the
+importance of the respective inputs to the output.</p>
+
+<p>These can be viewed as scalar multiples that with the binary input determine
+the output to be either 1, or 0, if the sum of the products of binary inputs
+and weights are more or less than the threshold (determined by the neuron).</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+
+ output =
+  \begin{cases}
+    0, & \text{if}\ \sum\limits_{j=1}^n w_jx_j \leq \text{threshold} \\
+    1, & \text{if}\ \sum\limits_{j=1}^n w_jx_j > \text{threshold}
+  \end{cases}
+
+\end{align*} %]]></script>
+
+<p>We can use the framework of a decision-making model. With any given determined
+on-off value, x, and any weight of importance on whether or not the given
+condition is present, w, we notice that in layman’s terms, the lower the
+threshold, the greater the chance of 1 (yes-value).</p>
+
+<p>It essentially weighs up different kinds of evidence in order to make decisions.
+Though it is a simple model, a combination of perceptrons can make quite
+subtle decisions.</p>
+
+<p>We often see layers of perceptrons in implementations of neural networks. A
+first layer may make any number of simple decisions. Then a second layer
+will weigh up those results, and are able to determine a decision based on
+more interactions and abstract level of the first layer. This goes on.</p>
+
+<p>In a model like this, each single output can be used by multiple, and different
+receptor perceptrons.</p>
+
+<p>To reinforce the framework of linear algebra, we can rewrite this model with
+vectors. Thus the product of the weight and binary input is the dot product
+<script type="math/tex">w \cdot x</script>. And to bring the threshold onto the lefthand side, let <script type="math/tex">b =
+-\text{threshold}</script>, where <script type="math/tex">b</script> is also known as the perceptron’s <em>bias</em>.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+ output =
+  \begin{cases}
+    0, & \text{if}\ w \cdot x + b \leq 0 \\
+    1, & \text{if}\ w \cdot x + b > 0
+  \end{cases}
+\end{align*} %]]></script>
+
+<p>In biology, we might think about this as how easy it is to get the perceptron
+to fire. For a perceptron with a really big bias, it’s extremely easy to fire.
+But with a very negative bias, it is very difficult to output 1.</p>
+
+<p>These perceptrons, if given two inputs can be reduced down, or are directly
+anaglous to a construction of logic gates. Or simply, a unique type of NAND gate
+which is used to produce a single output.</p>
+
+<p>We learn later on, that our algorithm techniques can be used to fine tune our
+weights and biases so that it elevates the conventional logic gate. And helps
+us dynamically solve problems, as opposed to rigourously designing a static
+circuit.</p>
+
+<h3 id="lets-learn-about-nand-gates-and-circuit-diagrams">Let’s Learn about NAND gates and circuit diagrams</h3>
+
+<p>A NAND gate is defined to be a boolean operator that will only give the value
+of zero, if and only if all the inputs have the value of one. Thus,</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="o">|</span> <span class="nx">A</span> <span class="o">|</span> <span class="nx">B</span> <span class="o">|</span> <span class="nx">A</span> <span class="nx">NAND</span> <span class="nx">B</span> <span class="o">|</span>
+<span class="o">|---|---|---|</span>
+<span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">1</span> <span class="o">|</span>
+</code></pre>
+</div>
+
+<!-- @ Expand on this thoroughly, try some examples yourself. Be vigilant. -->
+<!-- @ Read the first two chapters of Nand2Tetris -->
+
+<h4 id="sigmoid-neurons">Sigmoid Neurons</h4>
+
+<p>A subtype of perceptrons. Unlike the regular perceptron, there is a different
+mathematical derivation of how to determine the output. One of the most
+notable thing is that as opposed to recieving 1 or 0, it can also recieve any
+number between 1 or 0, say, 0.077. This also applies to the bias and output.</p>
+
+<p>Again, all that matters is the likelihood of the artificial neuron to <em>“fire”</em>.</p>
+
+<p>The new equation of sigmoid neuron uses the constant <script type="math/tex">\sigma</script>, also known is the
+sigmoid function. Which is equivalent to:</p>
+
+<script type="math/tex; mode=display">\begin{align*}
+
+  \sigma \equiv \frac{1}{1 + e^{-z}}
+
+\end{align*}</script>
+
+<p>The sigmoid function is much more of a step function. It grows relatively over
+<script type="math/tex">z = w \cdot x + b</script>.
+<!-- kind of looks like this _|- --></p>
+
+<h4 id="so-what-does-this-mean">So what does this mean?</h4>
+
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=What I am Learning: Neural Networks - http://jessicaquynh.github.io/posts/neural-networks by @jalafel', 'newwindow', 'width=500, height=225'); return false;">
+              <span class="icon icon-social-twitter"></span>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://jessicaquynh.github.io/posts/neural-networks', 'newwindow', 'width=500, height=500'); return false;">
+              <span class="icon icon-social-facebook"></span>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=http://jessicaquynh.github.io/posts/neural-networks', 'newwindow', 'width=550, height=400'); return false;">
+              <span class="icon icon-social-googleplus"></span>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script>
+              (function() {
+                  var d = document, s = d.createElement('script');
+                  s.src = '//jessicaquynh-github-io.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+              })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    This is a blog written by 
+    <a href="/about" title="About me">Jessica Quynh Tran</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-88235289-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

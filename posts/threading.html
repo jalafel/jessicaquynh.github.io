@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Jessica Quynh | What I am Learning: Threading</title>
+  <meta name="description" content="Multi-thread vs Single threads, exactly what are threads even about?">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="What I am Learning: Threading">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://jessicaquynh.github.io/posts/threading">
+  <meta property="og:description" content="Multi-thread vs Single threads, exactly what are threads even about?">
+  <meta property="og:site_name" content="Jessica Quynh">
+  <meta property="og:image" content="http://jessicaquynh.github.io/assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="http://jessicaquynh.github.io/posts/threading">
+  <meta name="twitter:title" content="What I am Learning: Threading">
+  <meta name="twitter:description" content="Multi-thread vs Single threads, exactly what are threads even about?">
+  <meta name="twitter:image" content="http://jessicaquynh.github.io/assets/og-image.jpg">
+
+
+  <link href="http://jessicaquynh.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Jessica Quynh Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/dark.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Jessica Quynh">Jessica Quynh</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/jalafel" target="_blank" title="Twitter">
+          <span class="icon icon-social-twitter"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/jessicaquynh" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>What I am Learning: Threading</h1>
+            <p>Multi-thread vs Single threads, exactly what are threads even about?</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                November 15, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  6 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/learning">learning</a>
+                
+                  <a href="/tag/node">node</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <h2 id="what-is-a-thread">What is a Thread?</h2>
+
+<p>A thread is a term that denotes the execution of the smallest sequence of
+programmed instructions that can be managed by a <code class="highlighter-rouge">scheduler</code><sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>. Typically, a
+thread is used by an operating system, and is a component of a process.</p>
+
+<p>Properties of threads:</p>
+<ul>
+  <li>Multiple threads can exists within one process (<em>multithreading</em>)</li>
+  <li>By property, it can execute concurrently and shares resources (ie. memory)</li>
+</ul>
+
+<h3 id="it-is-not-a-process">It is not a process</h3>
+
+<p>Though the definition uses the word <code class="highlighter-rouge">process</code>, a thread is not a process, vice
+versa. However, we can say that a thread or multiple threads is contained within
+a subset of a process.</p>
+<ul>
+  <li>processes are typically independent</li>
+  <li>processes carry more state information than threads, while multiple threads
+within a process share process state as well as memory &amp; other resources</li>
+  <li>processes have separate address spaces<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>, threads share theirs</li>
+  <li>processes interact only through system-provided inter-process
+communication<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup> mechanisms</li>
+  <li>context-switching with threads is faster than it is with processes</li>
+</ul>
+
+<h3 id="single-threading">Single-threading</h3>
+
+<p>This is the term to denote the processing of one command at a time.</p>
+
+<h3 id="multi-threading">Multi-threading</h3>
+
+<p>This allows multiple threads to exist within the context of one process. They
+share the process’s resources, but are able to execute independently. It can
+also be useful for concurrent execution or parallel execution<sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup>.</p>
+
+<h3 id="where-does-javascript-fit-on-the-binary">Where does JavaScript fit on the binary?</h3>
+
+<p>JavaScript is an example of non-parallel concurrency. There is only one thread.
+Any asynchronous callback must wait until the previous chunk of code has
+finished executing. This is important to know, because it guarantees that any
+function you write is atomic<sup id="fnref:5"><a href="#fn:5" class="footnote">5</a></sup>, and thus, no callback can interrupt the
+function until it returns.</p>
+
+<p>The atomization of JavaScript functions, guarantees that the shared memory will
+use the entire data as it appears in the moment of execution.</p>
+
+<p>There is one single thread that handles your event loop<sup id="fnref:6"><a href="#fn:6" class="footnote">6</a></sup>. The event loop is
+a queue of unprocessed events. It iterates through one at a time, and invokes
+each event as necessary; say a function calls another function, there is no
+other function you can implement in your program that can block that callback
+from executing. Once an event is processed, the event loop dequeues that event
+and the process continues.</p>
+
+<h3 id="synchronous-io-blocking-io">Synchronous I/O (blocking I/O)</h3>
+
+<p>A form of I/O that waits for each process to complete before starting the next.
+This approach blocks the progress of a program while the communication is in
+progress, leaving system resources idle. If there are many I/O operations, a
+processor can spend much of it’s time idle, waiting for I/O operations to
+complete.</p>
+
+<h3 id="asynchronous-io-non-blocking-io-non-sequential-io">Asynchronous I/O (non-blocking I/O, non-sequential I/O)</h3>
+
+<p>A form of I/O that permits other processing to continue before the transmission
+has finished. It functions such that any operation that depends on another
+operation to complete to remain blocked, while other functions that are
+independent to continue.</p>
+
+<p>The method for implementation utilizes polling<sup id="fnref:7"><a href="#fn:7" class="footnote">7</a></sup> at intervals</p>
+
+<p>This is used to improve throughput, latency, and/or responsiveness.</p>
+
+<h3 id="what-is-nodejs-then">What is Node.js, then?</h3>
+
+<p>Node.js is a runtime environment<sup id="fnref:7:1"><a href="#fn:7" class="footnote">7</a></sup> for JavaScript. It operates on a
+single-thread and uses non-blocking I/O calls. If you recall, this will
+support concurrency between function calls, and the single thread enforces
+callbacks.</p>
+
+<p>While this sounds inefficient, node.js operates asynchronously. Which is why
+we can say that it is event-driven. The event loop exists to poll specific
+events and invokes handlers at the proper time. A callback function is also
+known as an event handler.</p>
+
+<p>So when a function is invoked in the event pool from Node.js it makes that
+request and attaches a callback function to that request. Whenever the
+request is fulfilled, an event is emitted to trigger the associated callback
+to do something with either the results of the requested action</p>
+
+<p>In order to accomodate the single-threaded event loop, libuv is utilized to
+use a fixed-size threadpool, which is responsible for some of the
+non-blocking asynchronous I/O operations.</p>
+
+<p>Uses of Node include:</p>
+
+<ul>
+  <li>Web servers and networking tools</li>
+  <li>file system I/O</li>
+  <li>networking (DNS, HTTP, TCP, TLS/SSL, or UDP)</li>
+  <li>binary data (buffers)</li>
+  <li>cryptography functions</li>
+  <li>data streams</li>
+</ul>
+
+<h4 id="more-on-threadpool">More on Threadpool</h4>
+
+<p>Since each execution of parallel tasks are handled by the threadpool, let’s look
+a little closer to what that means.</p>
+
+<p>A threadpool is a queued set of threads that is dispatched by the main thread.
+Each thread differs inherent to its type; networking is non-blocking and file
+I/O runs in a blocking way.</p>
+
+<p>When a thread in the thread pool completes a task, it informs the main thread of
+this, which in turn, the main thread reacts by executing the registered
+callback. Callbacks are handled serially on the main thread, which may pose
+problems if long-lasting computations will freeze the entire event-loop.</p>
+
+<p>Glossary:
+<em>Throughput</em> - the total amount of work completed per time unit
+<em>Response Time</em> - time from work becoming enabled until the first point it
+                  begins execution
+<em>Latency</em> - the time between working becoming enabled and its completion
+<em>Heap</em> - Denotes a large, mostly unstructured, region of memory
+<em>Data race</em> - Two memory accesses in a program where both:</p>
+<ul>
+  <li>target the same location</li>
+  <li>are performed concurrently by two threads</li>
+  <li>are not reads</li>
+  <li>are not synchronization operations
+  Data races can exist without race conditions but many data races lead
+  to race conditions.
+<em>Race condition</em> - Where output is dependent on the sequence of timing of
+other unctonrollable events.
+  Race conditions can exist without data races, but many race conditions
+  are due to data races.
+<em>Execution Model</em> - Specifies how work takes place specific to the language</li>
+</ul>
+
+<p>Resources:
+https://en.wikipedia.org/wiki/Thread_(computing)
+https://en.wikipedia.org/wiki/Scheduling_(computing)
+https://en.wikipedia.org/wiki/Parallel_computing
+https://en.wikipedia.org/wiki/Linearizability
+https://en.wikipedia.org/wiki/Asynchronous_I/O
+https://en.wikipedia.org/wiki/Runtime_system
+https://en.wikipedia.org/wiki/Node.js
+https://en.wikipedia.org/wiki/Observer_pattern
+https://developer.mozilla.org/en/docs/Web/JavaScript/EventLoop
+http://softwareengineering.stackexchange.com/questions/190719/
+https://www.quora.com/How-does-a-single-thread-handle-asynchronous-code-in-JavaScriptthe-difference-between-concurrent-and-parallel-execution
+http://preshing.com/20130618/atomic-vs-non-atomic-operations/
+http://blog.regehr.org/archives/490</p>
+
+<h3 id="footnotes">Footnotes</h3>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+
+      <p>A scheduler is a method by which work is assigned to resources to complete
+that work.&nbsp;<a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+
+      <p>An address space defines a range of discrete addresses; of each may relate
+to a network host, peripheal device, disk sector, a memory cell or other
+logical/physical idenitty.&nbsp;<a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+
+      <p>IPC are mechanisms that allow processes to share data; typically categorized
+as clients and servers.&nbsp;<a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:4">
+
+      <p>The difference between concurrent and parallel execution is explained as
+concurrency being the sequence of task A and task B happening independently.
+Such that task A begins, and then B starts before task A is finished.
+Otherwise stated that A and B tasks/calculations happen within the same time
+frame, with a general tendency towards depdendency between the two.</p>
+
+      <p>On the other hand, parallelism describes two or more tasks/calculations that
+happen simultaneously. Parallelism is one way to implement concurrency. This
+is seen through task switching; the CPU will switch between tasks A and B
+with fractions of time slices in between and the two tasks will appear to be
+running in parallel.&nbsp;<a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:5">
+
+      <p>This is a term used in concurrent programming. Also known as
+linearizability. An operation (or set of) is atomic if it appears to the
+rest of the system to occur instantaneously. It guarantees isolation from
+concurrent processes. They commonly have a succeed-or-fail definition. They
+either successfully change the state of the system or have no apparent
+effect.&nbsp;<a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:6">
+
+      <p>Got its name from its usual implementation:</p>
+
+      <div class="highlighter-rouge"><pre class="highlight"><code>while(queue.waitForMessage()) {
+  queue.processNextMessage();
+}
+</code></pre>
+      </div>
+
+      <p><code class="highlighter-rouge">queue.processNextMessage</code> waits synchronously for a message to arrive (where
+a <em>message</em> is an association with the function to be called in a JavaScript
+runtime).</p>
+
+      <p>Each message is processed completely before any other message is processed. It
+cannot be pre-empted and will run entirely before any other code runs. Unlike in
+C, which if a function runs in a thread, it can be stopped at any point to
+run some other code in another thread.&nbsp;<a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:7">
+
+      <p>A system to implement an execution model (the order in which work was
+specified in terms of the language that it gets performed.)&nbsp;<a href="#fnref:7" class="reversefootnote">&#8617;</a>&nbsp;<a href="#fnref:7:1" class="reversefootnote">&#8617;<sup>2</sup></a></p>
+    </li>
+  </ol>
+</div>
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=What I am Learning: Threading - http://jessicaquynh.github.io/posts/threading by @jalafel', 'newwindow', 'width=500, height=225'); return false;">
+              <span class="icon icon-social-twitter"></span>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://jessicaquynh.github.io/posts/threading', 'newwindow', 'width=500, height=500'); return false;">
+              <span class="icon icon-social-facebook"></span>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=http://jessicaquynh.github.io/posts/threading', 'newwindow', 'width=550, height=400'); return false;">
+              <span class="icon icon-social-googleplus"></span>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script>
+              (function() {
+                  var d = document, s = d.createElement('script');
+                  s.src = '//jessicaquynh-github-io.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+              })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    This is a blog written by 
+    <a href="/about" title="About me">Jessica Quynh Tran</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-88235289-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

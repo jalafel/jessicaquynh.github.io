@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Jessica Quynh</title>
+    <description>This is a blog dedicated to my adventures in computer programming. Welcome to the left-side of my brain.</description>
+    <link>http://jessicaquynh.github.io</link>
+    <atom:link href="http://jessicaquynh.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Node-serialport Inquiry and Native Modules in Node.js</title>
+        <description>How exactly does node-serialport build as a native module?</description>
+        <pubDate>Sat, 04 Feb 2017 00:00:00 -0500</pubDate>
+        <link>http://jessicaquynh.github.io/posts/native-modules</link>
+        <guid isPermaLink="true">http://jessicaquynh.github.io/posts/native-modules</guid>
+      </item>
+    
+      <item>
+        <title>Streams, The Arduino, and Cross-platform Complexity</title>
+        <description>Robotting around the world (or at least around many systems)</description>
+        <pubDate>Thu, 12 Jan 2017 00:00:00 -0500</pubDate>
+        <link>http://jessicaquynh.github.io/posts/streams-arduino-termios</link>
+        <guid isPermaLink="true">http://jessicaquynh.github.io/posts/streams-arduino-termios</guid>
+      </item>
+    
+      <item>
+        <title>Alterconf</title>
+        <description>Reflections from Alterconf, in short: an amazing learning experience</description>
+        <pubDate>Sun, 11 Dec 2016 22:46:00 -0500</pubDate>
+        <link>http://jessicaquynh.github.io/posts/alterconf</link>
+        <guid isPermaLink="true">http://jessicaquynh.github.io/posts/alterconf</guid>
+      </item>
+    
+      <item>
+        <title>What I am Learning: Neural Networks</title>
+        <description>Notes on neural networks.</description>
+        <pubDate>Mon, 28 Nov 2016 22:46:00 -0500</pubDate>
+        <link>http://jessicaquynh.github.io/posts/neural-networks</link>
+        <guid isPermaLink="true">http://jessicaquynh.github.io/posts/neural-networks</guid>
+      </item>
+    
+      <item>
+        <title>Outreachy: Before It Begins</title>
+        <description>My very post talking about how I got involved with Outreachy</description>
+        <pubDate>Sat, 26 Nov 2016 22:16:00 -0500</pubDate>
+        <link>http://jessicaquynh.github.io/posts/on-beginning-outreachy</link>
+        <guid isPermaLink="true">http://jessicaquynh.github.io/posts/on-beginning-outreachy</guid>
+      </item>
+    
+      <item>
+        <title>What I am Learning: UNIX Processes</title>
+        <description>Visual notes on UNIX processes</description>
+        <pubDate>Fri, 25 Nov 2016 22:46:00 -0500</pubDate>
+        <link>http://jessicaquynh.github.io/posts/unix-processes</link>
+        <guid isPermaLink="true">http://jessicaquynh.github.io/posts/unix-processes</guid>
+      </item>
+    
+      <item>
+        <title>Thoughts On Information</title>
+        <description>Philosophy, computing, and language</description>
+        <pubDate>Fri, 25 Nov 2016 19:54:00 -0500</pubDate>
+        <link>http://jessicaquynh.github.io/posts/thoughts-on-information</link>
+        <guid isPermaLink="true">http://jessicaquynh.github.io/posts/thoughts-on-information</guid>
+      </item>
+    
+      <item>
+        <title>What I am Learning: Child Processes in Node.js</title>
+        <description>Child processes are the javascript wrapper for your system processes</description>
+        <pubDate>Tue, 15 Nov 2016 12:34:00 -0500</pubDate>
+        <link>http://jessicaquynh.github.io/posts/child-processes</link>
+        <guid isPermaLink="true">http://jessicaquynh.github.io/posts/child-processes</guid>
+      </item>
+    
+      <item>
+        <title>What I am Learning: Threading</title>
+        <description>Multi-thread vs Single threads, exactly what are threads even about?</description>
+        <pubDate>Tue, 15 Nov 2016 10:44:02 -0500</pubDate>
+        <link>http://jessicaquynh.github.io/posts/threading</link>
+        <guid isPermaLink="true">http://jessicaquynh.github.io/posts/threading</guid>
+      </item>
+    
+      <item>
+        <title>Inaugural Post</title>
+        <description>My very first post!</description>
+        <pubDate>Sun, 13 Nov 2016 23:44:02 -0500</pubDate>
+        <link>http://jessicaquynh.github.io/posts/inaugural-post</link>
+        <guid isPermaLink="true">http://jessicaquynh.github.io/posts/inaugural-post</guid>
+      </item>
+    
+  </channel>
+</rss>
