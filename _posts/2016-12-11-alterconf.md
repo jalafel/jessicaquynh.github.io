@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Alterconf"
-date:   2016-12-11 23:46:00 -0400
-categories: outreachy
+description: "Reflections from Alterconf, in short: an amazing learning experience"
+tags: [outreachy, conference]
 ---
 
 ### AlterConf

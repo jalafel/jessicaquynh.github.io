@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "What I am Learning: Threading"
-date:   2016-11-15 11:44:02 -0400
-categories: learning
+description: "Multi-thread vs Single threads, exactly what are threads even about?"
+tags: [learning, unix, nodejs]
 ---
 
 ## What is a Thread?

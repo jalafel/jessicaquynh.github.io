@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Node-serialport Inquiry and Native Modules in Node.js"
-date:   2017-02-04
-categories: outreachy
+description: "How exactly does node-serialport build as a native module?"
+tags: [outreachy, nodejs]
 ---
 
 These past few weeks have been a bit of a challenge. No excuses here, but my
@@ -81,7 +81,6 @@ versioning overhead for you. 🎉
 
 A lot of credit is due to this resource here over at [Rising Stack][] on 
 building native modules with Node.js, with great provided examples.
-
 ### Documentation on Backpressure
 
 Working on a pull request to write a [guide on backpressuring][]! It's been

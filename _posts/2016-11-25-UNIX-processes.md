@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "What I am Learning: UNIX Processes"
-date:   2016-11-25 23:46:00 -0400
-categories: learning
+description: "Visual notes on UNIX processes"
+tags: [learning, unix]
 images:
   - image_path: /assets/images/unix_processes_1.jpg
     title: Unix Processes 1
@@ -34,14 +34,15 @@ Which lands me further than I was yesterday. Yay :)
 
 Here are my visual notes:
 
-<ul class="photo-gallery" style="list-style: none;">
-  {% for image in page.images %}
-    <li>
-      <a href="{{ image.link }}">
-        <img src="{{ image.image_path }}" alt="{{ image.title}}"/>
-      </a>
-      <em>{{ image.caption }}</em>
-    </li>
-  {% endfor %}
-</ul>
+#### Unix Processes 1
+{% include image.html path="unix_processes_1.jpg" alt="Visual note one" %}
+<em>1. Overview of Kernel & Processes, how they communicate</em>
+
+#### Unix Processes 2
+{% include image.html path="unix_processes_2.jpg" alt="Visual note two" %}
+<em>2. Program vs. Process</em>
+
+#### Unix Processes 3
+{% include image.html path="unix_processes_3.jpg" alt="Visual note three" %}
+<em>3. Properties of a Process</em>
 

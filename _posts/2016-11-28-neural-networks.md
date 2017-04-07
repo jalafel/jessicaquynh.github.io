@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "What I am Learning: Neural Networks"
-date:   2016-11-28 23:46:00 -0400
-categories: learning
+description: "Notes on neural networks."
+categories: [learning]
 ---
 
 ### What is a neural network?

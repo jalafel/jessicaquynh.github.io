@@ -1,11 +1,11 @@
 ---
 layout: post
 title:  "Thoughts: On Information"
-date:   2016-11-25 20:54:00 -0400
-categories: thoughts
+description: "Philosophy, computing, and language"
+tags: [thoughts]
 ---
 
-There has always existed a tension between innovation and history. Even in terms
+There has always existwed a tension between innovation and history. Even in terms
 of physical dynamics. The former is divined to move forward, imagining and
 usurping the future, while the latter is analyzing and uncovering the past.
 

@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Inaugural Post"
-date:   2016-11-13 23:44:02 -0500
-categories: update
+description: "My very first post!"
+tags: [outreachy]
 ---
 This is the first post of my blog. I am excited to start writing regularly. Look
 forward to personal thoughts, lots of dry notes, and a bundle of progress

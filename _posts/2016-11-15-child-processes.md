@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "What I am Learning: Child Processes in Node.js"
-date:   2016-11-15 13:34:00 -0400
-categories: learning
+description: "Node.js child processes are the javascript wrapper for your system processes"
+tags: [learning, nodejs]
 ---
 
 ### What is a child process?

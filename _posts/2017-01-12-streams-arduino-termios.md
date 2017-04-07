@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Streams, The Arduino, and Cross-platform Complexity"
-date:   2017-01-12
-categories: outreachy
+description: "Robotting around the world (or at least around many systems)"
+tags: [outreachy, nodejs]
 ---
 
 It's certainly been awhile since I have written up a post in regards to my
@@ -44,10 +44,13 @@ between UNIX and node.
 When I met up with Francis Guetto who maintains the node-serialport package,
 he graciously gifted me with an Arduino Uno that was flashed with the serialport test code.
 
-<div>
+{% include image.html path="artisanal_arduino.jpg" alt="An Artisanal Arduino" %}
+<em>An Arduino Uno Against An Artisanal Cafe Background</em>
+<!-- <div>
   <img src="{{ site.url }}/assets/images/artisanal_arduino.jpg" alt="An Artisanal Arduino"/>
   <em>An Arduino Uno Against An Artisanal Cafe Background</em>
 </div>  
+ -->
 ---
   
 I have begun playing around with node-serialport to understand exactly what is

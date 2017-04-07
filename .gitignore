@@ -1,5 +1,8 @@
-_site
-.sass-cache
 .jekyll-metadata
-examples
-textbooks
+!.keep
+*.DS_Store
+*.sass-cache
+/.asset-cache/*
+/_site/*
+/_assets/bower/*
+K

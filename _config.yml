@@ -1,38 +1,66 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing these this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+# Mandatory settings
 
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-name: Sitename
-author: Jessica Quynh Tran
-title: j.q.t.
-email: jessica.quynh.tran@gmail.com
-description:
-  This is a blog dedicated to my adventures in computer programming.
-  Welcome to the left-side of my brain.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://jessicaquynh.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  jessicaquynh
-instagram_username: jalafel
-twitter_username: jalafel
-google_analytics: UA-88235289-1
-disqus:
-  shortname: jessicaquynh-github-io
-# Build settings
-markdown: kramdown
-theme: minima
-gems:
-  - jekyll-feed
+name: < developer in progress >
+paginate: 25
+paginate_path: "/posts/page/:num/"
+url: # add site url http://example.com/
+blog_theme: light # Or use dark
+
+# Optional settings
+
+discus_identifier: jessicaquynh-github-io
+ga_analytics:  UA-88235289-1
+rss_enabled: true # Change to false if not
+about_enabled: true # Change to true if you wish to show an icon in the navigation that redirects to the about page
+social:
+  dribbble: # Add your Dribbble handle
+  facebook: # Add your Facebook handle
+  flickr: # Add your Flickr handle
+  github: jessicaquynh # Add your GitHub handle
+  linkedin: # Add your LinkedIn handle
+  twitter: jalafel # Add your Twitter handle
+  email: jessica.quynh.tran@gmail.com # Add your Email address
+  bitcoin: # Add your Bitcoin link or address
+
+# Important settings (change at own risk)
+
+assets:
+  compress:
+    css: true
+    js: true
+  features:
+    automatic_img_size: false
+  sources:
+    - _assets/bower
+    - _assets/fonts
+    - _assets/images
+    - _assets/javascripts
+    - _assets/stylesheets
+    - _vendor/
+collections:
+  my_tags:
+    output: true
+    permalink: /tag/:slug/
+defaults:
+  -
+    scope:
+      path: ""
+      type: my_tags
+    values:
+      layout: articles_by_tag
 exclude:
+  - .bowerrc
+  - .travis.yml
+  - bin/*
+  - bower.json
+  - circle.yml
   - Gemfile
   - Gemfile.lock
+  - README.md
+  - vendor/
+gems:
+  - jekyll-assets
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jemoji
+permalink: posts/:slug

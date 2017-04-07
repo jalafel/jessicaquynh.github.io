@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Outreachy: Before It Begins"
-date:   2016-11-26 23:16:00 -0400
-categories: outreachy
+description: "My very post talking about how I got involved with Outreachy"
+tags: [outreachy]
 ---
 
 I am incredibly pleased to be writing this post. Outreachy, an organization
