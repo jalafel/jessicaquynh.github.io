@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>< dev in progress > | Node-serialport Inquiry and Native Modules in Node.js</title>
+  <meta name="description" content="How exactly does node-serialport build as a native module?">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Node-serialport Inquiry and Native Modules in Node.js">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/posts/native-modules">
+  <meta property="og:description" content="How exactly does node-serialport build as a native module?">
+  <meta property="og:site_name" content="< dev in progress >">
+  <meta property="og:image" content="/assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="/posts/native-modules">
+  <meta name="twitter:title" content="Node-serialport Inquiry and Native Modules in Node.js">
+  <meta name="twitter:description" content="How exactly does node-serialport build as a native module?">
+  <meta name="twitter:image" content="/assets/og-image.jpg">
+
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicon/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicon/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/favicon/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/favicon/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/favicon/apple-touch-icon-60x60.png" />
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/favicon/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/favicon/apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/favicon/apple-touch-icon-152x152.png" />
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-196x196.png" sizes="196x196" />
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-16x16.png" sizes="16x16" />
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-128.png" sizes="128x128" />
+<meta name="application-name" content="&nbsp;"/>
+<meta name="msapplication-TileColor" content="#FFFFFF" />
+<meta name="msapplication-TileImage" content="mstile-144x144.png" />
+<meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+<meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+<meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+<meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+
+
+  <link href="/feed.xml" type="application/rss+xml" rel="alternate" title="< dev in progress > Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/light.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="< dev in progress >">< dev in progress ></a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/jalafel" target="_blank" title="Twitter">
+          <span class="icon icon-social-twitter"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/jessicaquynh" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:jessica.quynh.tran@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>Node-serialport Inquiry and Native Modules in Node.js</h1>
+            <p>How exactly does node-serialport build as a native module?</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                February 4, 2017
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  3 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/outreachy">outreachy</a>
+                
+                  <a href="/tag/nodejs">nodejs</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p>These past few weeks have been a bit of a challenge. No excuses here, but my
+main machine was out of commission for a little while. And ultimately, the 
+state of the world certainly made an impact in general feelings of security,
+in spite of my privilege as a Canadian.</p>
+
+<p>Nonetheless, as they say, on with the show! In the past few weeks I’ve been 
+doing more study and inquiry into <a href="https://github.com/EmergingTechnologyAdvisors/node-serialport"><code class="highlighter-rouge">node-serialport</code></a> and learning exactly 
+how they it is built. I have finally published my piece on [Node Streams][], 
+and still continuing to contribute to the repos.</p>
+
+<h3 id="building-native-modules">Building Native Modules</h3>
+
+<h4 id="bindings">Bindings</h4>
+
+<p>I learned a lot about the abstraction layers in <code class="highlighter-rouge">node-serialport</code>. Starting off 
+with the JavaScript layer, most of the function calls uses the syntax 
+<code class="highlighter-rouge">bindings</code> to wrap the JavaScript calls around the native code (C++).</p>
+
+<p><a href="https://github.com/EmergingTechnologyAdvisors/node-serialport/blob/master/lib/bindings/linux.js#L1-L2">Example From Node-serialport</a>:</p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="s1">'use strict'</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">binding</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bindings'</span><span class="p">)(</span><span class="s1">'serialport.node'</span><span class="p">);</span>
+
+</code></pre>
+</div>
+
+<p>The entire stack call to create a serialport in node goes something like this:</p>
+<ul>
+  <li>Serialport is created and machine bindings is determined in the entry point.</li>
+  <li>Serialport object determines bindings by file [<code class="highlighter-rouge">auto-detect.js</code>][]</li>
+  <li>Binding is set in <a href="https://github.com/EmergingTechnologyAdvisors/node-serialport/blob/master/lib/serialport.js#L124">Serialport constructor call</a>.</li>
+  <li><a href="https://github.com/TooTallNate/node-bindings">node-bindings</a> calls machine specific C++ source code</li>
+  <li>Every function call will use machine-targetted functions</li>
+</ul>
+
+<p>The first question I had is what exactly is bindings? Well, it turns out that 
+it’s a library used to port native modules more easily in Node.js, which removes 
+the overhead of requiring your C++ files in your header.</p>
+
+<p>Instead of:</p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">binding</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./src/linux-binding'</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Bindings.js shortens the string to:</p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">binding</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bindings'</span><span class="p">)(</span><span class="s1">'serialport.node'</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>The machine specific C++ file is determined by the <a href="https://github.com/EmergingTechnologyAdvisors/node-serialport/blob/master/binding.gyp"><code class="highlighter-rouge">binding.gyp</code></a> file which 
+is specified by the author of the package.</p>
+
+<h4 id="nan-native-abstractions-for-nodejs-methods">NaN (Native Abstractions for Node.js) Methods</h4>
+
+<p>The native code can be written exactly as one would normally write C++ code.
+The Node.js <a href="https://nodejs.org/api/addons.html">Addon documentation</a> does a wonderful outlining exactly how one
+would go about writing a common “Hello World” program in C++ and running it
+as a node module.</p>
+
+<p>With respects to the UNIX philosophy of using tools when possible, there have 
+been packages built to help aid in the process. In particular, <a href="https://github.com/nodejs/nan"><code class="highlighter-rouge">NaN</code></a> is one
+of these libraries and is recommended because it is maintained by the Node 
+Foundation, which helps support multiple versions of Node.js as changes are
+introduced.</p>
+
+<p><code class="highlighter-rouge">NaN</code> allows you to wrap around your C++ functions so that they can be used and
+manipulated by Javascript. More importantly, it provides the same wrappers for 
+Node.js classes and their respective functions. Finally, it helps access V8
+and libuv function calls that are version specific, so if you write your native 
+code using <code class="highlighter-rouge">NaN</code>, you do not need to worry about future implementations of Node.js.</p>
+
+<p>This abstraction layer acts as a compatibility layer and handles all the 
+versioning overhead for you. 🎉</p>
+
+<p>A lot of credit is due to this resource here over at <a href="https://blog.risingstack.com/writing-native-node-js-modules/">Rising Stack</a> on 
+building native modules with Node.js, with great provided examples.</p>
+<h3 id="documentation-on-backpressure">Documentation on Backpressure</h3>
+
+<p>Working on a pull request to write a <a href="https://github.com/nodejs/nodejs.org/pull/1109">guide on backpressuring</a>! It’s been
+a great learning experience.</p>
+
+<p>Thank you @addaleax and @mcollina for all their time to help me figure out most 
+of the backpressuring.</p>
+
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=Node-serialport Inquiry and Native Modules in N... - /posts/native-modules by @jalafel', 'newwindow', 'width=500, height=225'); return false;">
+              <span class="icon icon-social-twitter"></span>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=/posts/native-modules', 'newwindow', 'width=500, height=500'); return false;">
+              <span class="icon icon-social-facebook"></span>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=/posts/native-modules', 'newwindow', 'width=550, height=400'); return false;">
+              <span class="icon icon-social-googleplus"></span>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script>
+              (function() {
+                  var d = document, s = d.createElement('script');
+                  s.src = '//jessicaquynh-github-io.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+              })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    Chalk is a high quality, completely customizable, performant and 100% free
+    blog template for Jekyll built by
+    <a href="/about" title="About me">Nielsen Ramon</a>. Download it <a href="https://github.com/nielsenramon/chalk" target="_blank" title="Download Chalk">here</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-88235289-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

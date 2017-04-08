@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>< dev in progress > | Streams, The Arduino, and Cross-platform Complexity</title>
+  <meta name="description" content="Robotting around the world (or at least around many systems)">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Streams, The Arduino, and Cross-platform Complexity">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/posts/streams-arduino-termios">
+  <meta property="og:description" content="Robotting around the world (or at least around many systems)">
+  <meta property="og:site_name" content="< dev in progress >">
+  <meta property="og:image" content="/assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="/posts/streams-arduino-termios">
+  <meta name="twitter:title" content="Streams, The Arduino, and Cross-platform Complexity">
+  <meta name="twitter:description" content="Robotting around the world (or at least around many systems)">
+  <meta name="twitter:image" content="/assets/og-image.jpg">
+
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicon/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicon/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/favicon/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/favicon/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/favicon/apple-touch-icon-60x60.png" />
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/favicon/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/favicon/apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/favicon/apple-touch-icon-152x152.png" />
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-196x196.png" sizes="196x196" />
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-16x16.png" sizes="16x16" />
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-128.png" sizes="128x128" />
+<meta name="application-name" content="&nbsp;"/>
+<meta name="msapplication-TileColor" content="#FFFFFF" />
+<meta name="msapplication-TileImage" content="mstile-144x144.png" />
+<meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+<meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+<meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+<meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+
+
+  <link href="/feed.xml" type="application/rss+xml" rel="alternate" title="< dev in progress > Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/light.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="< dev in progress >">< dev in progress ></a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/jalafel" target="_blank" title="Twitter">
+          <span class="icon icon-social-twitter"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/jessicaquynh" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:jessica.quynh.tran@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>Streams, The Arduino, and Cross-platform Complexity</h1>
+            <p>Robotting around the world (or at least around many systems)</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                January 12, 2017
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  4 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/outreachy">outreachy</a>
+                
+                  <a href="/tag/nodejs">nodejs</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p>It’s certainly been awhile since I have written up a post in regards to my
+Outreachy internship with Node! I think most folks are suffering from a hazy
+case of the “holidaze” right now, and I will admit that I am one of them.</p>
+
+<p>I was hoping to do a two-for-one by posting the project I worked on over the
+holidays at the same time as this update. There have been considerable delays,
+but as the punchline goes: “better nate than lever!”</p>
+
+<p>Here’s a quick catch up on what I have been working on :)</p>
+
+<h3 id="streams-writeup">Streams Writeup</h3>
+
+<p>Prior to beginning my mentorship with Myles, I inquired often on Streams in
+Node.js. I truly did not understand them.</p>
+
+<p>As a part of initiating our project, we decided I would do a writeup on streams.
+It quickly got out of hand. My piece is now &gt;3000 words long and is still
+incomplete. To make the piece easier to read and understand, I have split up the
+post into two pieces, and will be publishing it on Medium later this week.</p>
+
+<p>There is still a bit of polishing to do, but I am happy to have employed so
+many different faculties of myself: researching &amp; learning (on UNIX anagalous
+to streams), editorial writing, and coding &amp; hacking examples. It was a long
+task that took longer than I would have liked. But I’m very happy with how much
+I know.</p>
+
+<p>To build on my knowledge even further, I will be helping to write up a first
+draft on a <a href="https://github.com/nodejs/node/issues/10766">guide to back-pressuring with streams</a> to contribute to node-docs.
+I’m very happy to advance my expertise on this subject. Some of the practical
+aspects still feel very foreign, but theortically, I understand so much more
+about UNIX in general, and I have begun to understand the deep connection
+between UNIX and node.</p>
+
+<h3 id="the-arduino">The Arduino</h3>
+
+<p>When I met up with Francis Guetto who maintains the node-serialport package,
+he graciously gifted me with an Arduino Uno that was flashed with the serialport test code.</p>
+
+<p><a href="/assets/artisanal_arduino.jpg" class="fluidbox-trigger">
+  <img src="/assets/artisanal_arduino.jpg" alt="An Artisanal Arduino" />
+</a></p>
+
+<p><em>An Arduino Uno Against An Artisanal Cafe Background</em>
+<!-- <div>
+  <img src="/assets/images/artisanal_arduino.jpg" alt="An Artisanal Arduino"/>
+  <em>An Arduino Uno Against An Artisanal Cafe Background</em>
+</div>  
+ -->
+—</p>
+
+<p>I have begun playing around with node-serialport to understand exactly what is
+happening outside of the Johnny-five abstraction layer. Myles suggested that
+I try out the <a href="https://www.arduino.cc/en/tutorial/blink">Arduino blink program</a> to learn more about serial communication.</p>
+
+<p>Thus far, this is what I know:</p>
+
+<ul>
+  <li>Serial communication is a way for two devices to speak with each other. Both the output device and input device are told to send and recieve data at the exact same time (this is also known as <em>baudrate</em>).</li>
+  <li>Once a program is uploaded onto an arduino, it can run independent of the operating system that it originated from, so long it is connected to a power source.</li>
+</ul>
+
+<h4 id="goals-to-blink">Goals to Blink</h4>
+
+<ol>
+  <li>Connect to the device</li>
+  <li>Pinpoint the LED pin (on an Arduino Uno, the built-in LED is called pin 13)</li>
+  <li>Send HIGH and LOW signals from node-serialport to turn the LED on and off</li>
+</ol>
+
+<p>I ran into a few roadblocks with this project. Without being too pedantic, step 2 is the biggest issue in my way.</p>
+
+<p>I am able to mimic a blink program using only the RX light on the Arduino board. Ideally, this would operate on the L-pin (aka pin 13). But, looking at
+Johnny-five’s codebase, it seems to be a complex procedure and will require a
+bit more time and understanding.</p>
+
+<p>Tomorrow, Myles and I will plan to co-code and work on this problem together.</p>
+
+<p>For now, here is a currrent snapshot of the code that succeeds in getting
+the RX light to blink:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var SerialPort = require('serialport');
+
+var port = new SerialPort('/dev/cu.usbmodem1411', {
+  // A baud is the unit to denote rate of data transfer in electronics.
+  // Explicitly, it is the amount of signals sent per second.
+  baudRate: 9600
+});
+
+port.on('open', () =&gt; {
+
+  console.log('Port is open!');
+
+  var SIG = 0, LOW = 0, HIGH = 255;
+
+  function sendData() {
+    // Send the data.
+    port.write(SIG);
+
+    // Ternary operation to alternate high and low signals.
+    SIG = SIG === 0 ? HIGH : LOW;
+  }
+
+  // Set an interval to send data every 500ms.
+  setInterval(sendData, 500);
+});
+
+// Open errors will be emitted as an error event.
+port.on('error', (err) =&gt; {
+  console.log('Error: ', err.message);
+});
+
+</code></pre>
+</div>
+
+<h3 id="cross-platform-complexity">Cross-platform Complexity</h3>
+
+<p>Finally, I have been taking a look at this <a href="https://github.com/EmergingTechnologyAdvisors/node-serialport/issues/545">node-serialport issue</a>. From our
+meeting, Francis compiled a wishlist that libuv and node-core could work on
+to implement a cleaner serialport interface. One of those includes a setting
+to set a custom baudrate.</p>
+
+<p>The ability to set a custom baudrate is useful if you’re working with a piece
+of hardware that sends out signals at a non-standard rate.</p>
+
+<p>One of the largest hurdles in this is that each operating system effectively
+uses a different C library and the system calls varies slightly from each other.</p>
+
+<p>As Francis writes,</p>
+<blockquote>
+  <p>There are a finite set of tricks for linux, osx and windows to make this work right and serialport hasn’t yet figured them all out yet.</p>
+</blockquote>
+
+<p>In the referenced issue, someone opened a pull request that had a fix for
+Linux systems. In newer versions of Linux (+2.8), there is a new C <code class="highlighter-rouge">struct</code>
+called <code class="highlighter-rouge">termios2</code>. This <code class="highlighter-rouge">struct</code> is used in <code class="highlighter-rouge">pyserial</code> for its ability to
+set custom baudrates. However, because it is linux specific, it does not  open the option up to Windows and OSX.</p>
+
+<p>Francis offers a suggestion to transplant the <code class="highlighter-rouge">termios2</code> code into the project to bypass cross-platform issues. However, I agree with his opinion
+that it would not be the best solution.</p>
+
+<p>Hopefully, we can generate ideas what can be done in libuv and node-core to
+fix this issue.</p>
+
+<h4 id="thanks-for-reading-">Thanks for reading! :)</h4>
+
+<!-- External links-->
+
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=Streams, The Arduino, and Cross-platform Comple... - /posts/streams-arduino-termios by @jalafel', 'newwindow', 'width=500, height=225'); return false;">
+              <span class="icon icon-social-twitter"></span>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=/posts/streams-arduino-termios', 'newwindow', 'width=500, height=500'); return false;">
+              <span class="icon icon-social-facebook"></span>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=/posts/streams-arduino-termios', 'newwindow', 'width=550, height=400'); return false;">
+              <span class="icon icon-social-googleplus"></span>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script>
+              (function() {
+                  var d = document, s = d.createElement('script');
+                  s.src = '//jessicaquynh-github-io.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+              })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    Chalk is a high quality, completely customizable, performant and 100% free
+    blog template for Jekyll built by
+    <a href="/about" title="About me">Nielsen Ramon</a>. Download it <a href="https://github.com/nielsenramon/chalk" target="_blank" title="Download Chalk">here</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-88235289-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

@@ -1,20 +1,90 @@
----
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>{{ site.name | xml_escape }}</title>
-    <description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>
-    <link>{{ site.url }}</link>
-    <atom:link href="{{ page.path | absolute_url }}" rel="self" type="application/rss+xml" />
-    {% for post in site.posts limit:10 %}
+    <title>&lt; dev in progress &gt;</title>
+    <description></description>
+    <link></link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    
       <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.description | xml_escape }}</description>
-        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        <link>{{ post.url | absolute_url }}</link>
-        <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
+        <title>Node-serialport Inquiry and Native Modules in Node.js</title>
+        <description>How exactly does node-serialport build as a native module?</description>
+        <pubDate>Sat, 04 Feb 2017 00:00:00 -0500</pubDate>
+        <link>/posts/native-modules</link>
+        <guid isPermaLink="true">/posts/native-modules</guid>
       </item>
-    {% endfor %}
+    
+      <item>
+        <title>Streams, The Arduino, and Cross-platform Complexity</title>
+        <description>Robotting around the world (or at least around many systems)</description>
+        <pubDate>Thu, 12 Jan 2017 00:00:00 -0500</pubDate>
+        <link>/posts/streams-arduino-termios</link>
+        <guid isPermaLink="true">/posts/streams-arduino-termios</guid>
+      </item>
+    
+      <item>
+        <title>Alterconf</title>
+        <description>Reflections from Alterconf, in short: an amazing learning experience</description>
+        <pubDate>Sun, 11 Dec 2016 00:00:00 -0500</pubDate>
+        <link>/posts/alterconf</link>
+        <guid isPermaLink="true">/posts/alterconf</guid>
+      </item>
+    
+      <item>
+        <title>What I am Learning: Neural Networks</title>
+        <description>Notes on neural networks.</description>
+        <pubDate>Mon, 28 Nov 2016 00:00:00 -0500</pubDate>
+        <link>/posts/neural-networks</link>
+        <guid isPermaLink="true">/posts/neural-networks</guid>
+      </item>
+    
+      <item>
+        <title>Outreachy: Before It Begins</title>
+        <description>My very post talking about how I got involved with Outreachy</description>
+        <pubDate>Sat, 26 Nov 2016 00:00:00 -0500</pubDate>
+        <link>/posts/on-beginning-outreachy</link>
+        <guid isPermaLink="true">/posts/on-beginning-outreachy</guid>
+      </item>
+    
+      <item>
+        <title>Thoughts: On Information</title>
+        <description>Philosophy, computing, and language</description>
+        <pubDate>Fri, 25 Nov 2016 00:00:00 -0500</pubDate>
+        <link>/posts/innovation</link>
+        <guid isPermaLink="true">/posts/innovation</guid>
+      </item>
+    
+      <item>
+        <title>What I am Learning: UNIX Processes</title>
+        <description>Visual notes on UNIX processes</description>
+        <pubDate>Fri, 25 Nov 2016 00:00:00 -0500</pubDate>
+        <link>/posts/unix-processes</link>
+        <guid isPermaLink="true">/posts/unix-processes</guid>
+      </item>
+    
+      <item>
+        <title>What I am Learning: Threading</title>
+        <description>Multi-thread vs Single threads, exactly what are threads even about?</description>
+        <pubDate>Tue, 15 Nov 2016 00:00:00 -0500</pubDate>
+        <link>/posts/threading</link>
+        <guid isPermaLink="true">/posts/threading</guid>
+      </item>
+    
+      <item>
+        <title>What I am Learning: Child Processes in Node.js</title>
+        <description>Node.js child processes are the javascript wrapper for your system processes</description>
+        <pubDate>Tue, 15 Nov 2016 00:00:00 -0500</pubDate>
+        <link>/posts/child-processes</link>
+        <guid isPermaLink="true">/posts/child-processes</guid>
+      </item>
+    
+      <item>
+        <title>Inaugural Post</title>
+        <description>My very first post!</description>
+        <pubDate>Sun, 13 Nov 2016 00:00:00 -0500</pubDate>
+        <link>/posts/inaugural-post</link>
+        <guid isPermaLink="true">/posts/inaugural-post</guid>
+      </item>
+    
   </channel>
 </rss>

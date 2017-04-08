@@ -1,4 +1,0 @@
----
-slug: outreachy
-name: Outreachy
----

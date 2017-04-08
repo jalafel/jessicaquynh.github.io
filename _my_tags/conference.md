@@ -1,4 +1,0 @@
----
-slug: conference
-name: Conference
----

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>< dev in progress > | What I am Learning: UNIX Processes</title>
+  <meta name="description" content="Visual notes on UNIX processes">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="What I am Learning: UNIX Processes">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/posts/unix-processes">
+  <meta property="og:description" content="Visual notes on UNIX processes">
+  <meta property="og:site_name" content="< dev in progress >">
+  <meta property="og:image" content="/assets/og-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="/posts/unix-processes">
+  <meta name="twitter:title" content="What I am Learning: UNIX Processes">
+  <meta name="twitter:description" content="Visual notes on UNIX processes">
+  <meta name="twitter:image" content="/assets/og-image.jpg">
+
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicon/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicon/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/favicon/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/favicon/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/favicon/apple-touch-icon-60x60.png" />
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/favicon/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/favicon/apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/favicon/apple-touch-icon-152x152.png" />
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-196x196.png" sizes="196x196" />
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-16x16.png" sizes="16x16" />
+<link rel="icon" type="image/png" href="/assets/favicon/favicon-128.png" sizes="128x128" />
+<meta name="application-name" content="&nbsp;"/>
+<meta name="msapplication-TileColor" content="#FFFFFF" />
+<meta name="msapplication-TileImage" content="mstile-144x144.png" />
+<meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+<meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+<meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+<meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+
+
+  <link href="/feed.xml" type="application/rss+xml" rel="alternate" title="< dev in progress > Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/light.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="< dev in progress >">< dev in progress ></a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/jalafel" target="_blank" title="Twitter">
+          <span class="icon icon-social-twitter"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/jessicaquynh" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:jessica.quynh.tran@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>What I am Learning: UNIX Processes</h1>
+            <p>Visual notes on UNIX processes</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                November 25, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  1 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/learning">learning</a>
+                
+                  <a href="/tag/unix">unix</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p>In continuation to my compilation of notes about child processes in nodejs.
+I recognized that I knew next to nothing about UNIX, or processes. I was really
+just jotting down notes verbatim. So instead, I downloaded a PDF and got
+cracking.</p>
+
+<p>I don’t know about anyone else, but I find programming texts can be a bit dry
+and disengaging. I found myself zoning out or reading text without comprehending
+the words. Eventually, I realized that I’d benefit from a visual note-taking
+methodology and switched over.</p>
+
+<p>It was fun exercise because processes in UNIX follows a tree-like structure and
+its ontology is family-like (in a human sense). So, while there are still exists
+large, daunting gaps in my knowledge, I think I’ve obtained a trivial
+understanding of where processes fit into the operating system!</p>
+
+<p>Which lands me further than I was yesterday. Yay :)</p>
+
+<p>Here are my visual notes:</p>
+
+<h4 id="unix-processes-1">Unix Processes 1</h4>
+<p><a href="/assets/unix_processes_1.jpg" class="fluidbox-trigger">
+  <img src="/assets/unix_processes_1.jpg" alt="Visual note one" />
+</a></p>
+
+<p><em>1. Overview of Kernel &amp; Processes, how they communicate</em></p>
+
+<h4 id="unix-processes-2">Unix Processes 2</h4>
+<p><a href="/assets/unix_processes_2.jpg" class="fluidbox-trigger">
+  <img src="/assets/unix_processes_2.jpg" alt="Visual note two" />
+</a></p>
+
+<p><em>2. Program vs. Process</em></p>
+
+<h4 id="unix-processes-3">Unix Processes 3</h4>
+<p><a href="/assets/unix_processes_3.jpg" class="fluidbox-trigger">
+  <img src="/assets/unix_processes_3.jpg" alt="Visual note three" />
+</a></p>
+
+<p><em>3. Properties of a Process</em></p>
+
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=What I am Learning: UNIX Processes - /posts/unix-processes by @jalafel', 'newwindow', 'width=500, height=225'); return false;">
+              <span class="icon icon-social-twitter"></span>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=/posts/unix-processes', 'newwindow', 'width=500, height=500'); return false;">
+              <span class="icon icon-social-facebook"></span>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=/posts/unix-processes', 'newwindow', 'width=550, height=400'); return false;">
+              <span class="icon icon-social-googleplus"></span>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script>
+              (function() {
+                  var d = document, s = d.createElement('script');
+                  s.src = '//jessicaquynh-github-io.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+              })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    Chalk is a high quality, completely customizable, performant and 100% free
+    blog template for Jekyll built by
+    <a href="/about" title="About me">Nielsen Ramon</a>. Download it <a href="https://github.com/nielsenramon/chalk" target="_blank" title="Download Chalk">here</a>.
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-88235289-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>
