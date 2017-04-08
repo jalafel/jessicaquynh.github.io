@@ -3,16 +3,6 @@ layout: post
 title:  "What I am Learning: UNIX Processes"
 description: "Visual notes on UNIX processes"
 tags: [learning, unix]
-images:
-  - image_path: /assets/images/unix_processes_1.jpg
-    title: Unix Processes 1
-    caption: 1. Overview of Kernel & Processes, how they communicate
-  - image_path: /assets/images/unix_processes_2.jpg
-    title: Unix Processes 2
-    caption: 2. Program vs. Process
-  - image_path: /assets/images/unix_processes_3.jpg
-    title: Unix Processes 3
-    caption: 3. Properties of a Process
 ---
 
 In continuation to my compilation of notes about child processes in nodejs.
@@ -35,14 +25,14 @@ Which lands me further than I was yesterday. Yay :)
 Here are my visual notes:
 
 #### Unix Processes 1
-{% include image.html path="unix_processes_1.jpg" alt="Visual note one" %}
+{% include image.html path="unix_processes_1.jpg" path-detail="unix_processes_1.jpg" alt="Visual note one" %}
 <em>1. Overview of Kernel & Processes, how they communicate</em>
 
 #### Unix Processes 2
-{% include image.html path="unix_processes_2.jpg" alt="Visual note two" %}
+{% include image.html path="unix_processes_2.jpg" path-detail="unix_processes_2.jpg" alt="Visual note two" %}
 <em>2. Program vs. Process</em>
 
 #### Unix Processes 3
-{% include image.html path="unix_processes_3.jpg" alt="Visual note three" %}
+{% include image.html path="unix_processes_3.jpg" path-detail="unix_processes_3.jpg" alt="Visual note three" %}
 <em>3. Properties of a Process</em>
 

@@ -44,7 +44,7 @@ between UNIX and node.
 When I met up with Francis Guetto who maintains the node-serialport package,
 he graciously gifted me with an Arduino Uno that was flashed with the serialport test code.
 
-{% include image.html path="artisanal_arduino.jpg" alt="An Artisanal Arduino" %}
+{% include image.html path="artisanal_arduino.jpg" path-detail="artisanal_arduino.jpg" alt="An Artisanal Arduino" %}
 <em>An Arduino Uno Against An Artisanal Cafe Background</em>
 <!-- <div>
   <img src="{{ site.url }}/assets/images/artisanal_arduino.jpg" alt="An Artisanal Arduino"/>

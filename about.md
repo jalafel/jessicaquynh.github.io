@@ -25,4 +25,4 @@ programming. It is subdivided into few parts:
 
 This blog uses the [Jekyll](https://github.com/jekyll) static page generator.
 
-You can find my source code at my github {% include icon-github.html username="jessicaquynh" %}/ [jessicaquynh.github.io](https://github.com/jessicaquynh/jessicaquynh.github.io).
+You can find my source code at my github [jessicaquynh.github.io](https://github.com/jessicaquynh/jessicaquynh.github.io).
